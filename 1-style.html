@@ -1,0 +1,244 @@
+<style>*{
+font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+-webkit-user-drag:none;
+user-select:none;
+cursor:default;
+}
+body{
+overflow-wrap:break-word;
+background-color:#000;
+color:#fff;
+width:100%;
+margin:0px auto;
+position:relative;
+overflow:hidden;
+}
+a{
+text-decoration:none;
+font-size:16px;
+display:inline-block;
+min-height:32px;
+color:#00b0ff;
+background-color:#151515;
+padding:0 16px;
+margin:5px 0;
+border-radius:32px;
+text-align:center;
+font-weight:500;
+line-height:32px;
+border:solid;
+border-color:#345;
+border-width:2px;
+cursor:pointer;
+}
+.nobox{
+font-weight:normal;
+color:#fff;
+height:auto;
+background-color:rgba(0, 0, 0, 0);
+border:none;
+line-height:normal;
+}
+p{padding:5px 0px 5px}
+input{
+font-size:16px;
+padding:0 16px;
+margin:5px;
+height:32px;
+color:#fff;
+background-color:#151515;
+border-radius:32px 0 0 32px;
+-webkit-user-select:auto;
+-webkit-touch-callout:auto;
+-webkit-user-drag:auto;
+user-select:auto;
+border:solid;
+border-color:#345;
+border-width:2px;
+cursor:text;
+line-height:32px;
+width:160px;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type="number"] {
+-moz-appearance:textfield;
+}
+textarea{
+border:3px solid;
+font-size:16px;
+padding:20px;
+margin:5px;
+width:calc(95% - 60px);
+height:calc(50% - 102px);
+color:#fff;
+resize:none;
+border-color:#151515;
+border-width:3px;
+-webkit-user-select:auto;
+-webkit-touch-callout:auto;
+-webkit-user-drag:auto;
+user-select:auto;
+cursor:text;
+}
+button{
+width:auto;
+font-size:16px;
+height:36px;
+color:#00b0ff;
+background-color:#151515;
+padding:0 16px;
+margin:5px 0;
+border-radius:32px;
+text-align:center;
+font-weight:500;
+border:solid;
+border-color:#345;
+border-width:2px;
+line-height:32px;
+cursor:pointer;
+}
+img{
+pointer-events:none;
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-webkit-user-drag:none;
+user-select:none;
+}
+:root{color-scheme:dark}
+header{
+width:100%;
+height:78.5px;
+display:table;
+position:fixed;
+top:0;
+background-color:#111;
+border-bottom:solid 3px #444;
+border-width:1.5px;
+}
+header .ls{
+display:table-cell;
+min-width:40px;
+}
+header img{
+display:inline-block;
+width:auto;
+height:70px;
+margin:2px 16px 0;
+}
+.msg{
+position:relative;
+right:3px;
+font-size:80%;
+width:calc(100% - 22px);
+display:inline-block;
+line-height:18px;
+text-align:center;
+height:38px;
+overflow-y:auto;
+padding:10px;
+border-radius:19px;
+background-color:rgba(68,17,34,0.9);
+border:solid;
+border-color:#623;
+margin-bottom:2px;
+border-width:2px;
+}
+.goodmsg{
+position:relative;
+right:3px;
+font-size:80%;
+width:calc(100% - 22px);
+display:inline-block;
+line-height:36px;
+text-align:center;
+height:38px;
+overflow-y:auto;
+padding:10px;
+border-radius:19px;
+background-color:rgba(17,68,34,0.9);
+border:solid;
+border-color:#263;
+margin-bottom:2px;
+border-width:2px;
+}
+.box{
+overflow-y:auto;
+width:calc(1000px - 10px);
+height:calc(100% - 90px);
+background-color:#000;
+border-color:#134;
+padding:5px;
+position:fixed;
+left:calc(50% - 500px);
+top:80px;
+text-align:center;
+margin:0 auto;
+}
+.setbox{
+padding:10px;
+width:90%;
+border-radius:15px;
+border:solid 5px #345;
+background-color:#111;
+text-align:center;
+margin:0 auto;
+}
+select{
+background-color:#151515;
+font-size:100%;
+padding:10px;
+border-radius:10px;
+width:150px;
+line-height:32px;
+color:#fff;
+border:solid;
+border-color:#345;
+border-width:2px;
+font-size:120%;
+}
+.loadCurtain{
+position:fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background-color:#111;
+}
+.loadCurtain svg{
+position:fixed;
+top:calc(50% - 25vh);
+left:calc(50% - 25vh);
+height:50vh;
+}
+@media only screen and (max-width:1000px){
+.box{
+width:calc(100% - 10px);
+left:0;
+}
+}
+@media only screen and (max-width:599px){
+header .ls{
+display:block;
+margin:auto;
+text-align:center;
+}
+.msg{
+position:fixed;
+top:8px;
+left:2.5%;
+width:calc(95% - 26px);
+}
+.goodmsg{
+position:fixed;
+top:8px;
+left:2.5%;
+width:calc(95% - 26px);
+}
+}
+@media print{*{opacity:0%}}</style>
