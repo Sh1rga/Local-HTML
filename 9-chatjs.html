@@ -177,19 +177,16 @@ if (langFlag == false) {
 }
 
 var enc_bits = 2048;
-var enc_len = 16;
-var enc_str = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var enc_strLen = enc_str.length;
-var enc_result = "";
+var enc_seed = new Uint32Array(1);
 var ThisIsStart = false;
 var appBox = document.getElementById('box');
 
 
 function startView() {
 	if (language == "ar") {
-	  appBox.innerHTML = '<h1 aria-label="Shirga Chat">Sh1rga Chat</h1><div class="setbox"><h2 style="margin:8px">' + langjson.startroom + '</h2><button onclick="sendStart();" style="margin-bottom:8px">' + langjson.start + '</button></div><br><div class="setbox"><h2 style="margin:8px">' + langjson.joinroom + '</h2><form action="" style="margin-bottom:8px"><input type="number" id="input" autocomplete="off" required maxlength="12" alt="' + langjson.entertheroomid + '" enterkeyhint="done" pattern="^[0-9]+$" aria-label="' + langjson.entertheroomid + '" style="border-radius:0 32px 32px 0" dir="ltr"><button type="submit" onClick="Button();return false;" style="border-radius:32px 0 0 32px;padding-right:14px">' + langjson.join + '</button></form></div><br><p>Ver: ' + version + '</p><p><a style="color:#aaa" class="nobox" href="' + address_web + '/tos?lang=' + language + '" target="_blank" rel="noopener noreferrer">' + langjson.tos + '</a><br><a style="color:#aaa" class="nobox" href="https://www.mozilla.org/en-US/MPL/2.0/" target="_blank" rel="noopener noreferrer">This software is licensed under the terms of the Mozilla Public License 2.0.</a></p><p><button onclick="langSelectView();">Language</button></p>';
+	  appBox.innerHTML = '<h1 aria-label="Shirga Chat">Sh1rga Chat</h1><div class="setbox"><h2 style="margin:8px">' + langjson.startroom + '</h2><button onclick="sendStart();" style="margin-bottom:8px">' + langjson.start + '</button></div><br><div class="setbox"><h2 style="margin:8px">' + langjson.joinroom + '</h2><form action="" style="margin-bottom:8px"><input type="number" id="input" autocomplete="off" required maxlength="12" alt="' + langjson.entertheroomid + '" enterkeyhint="done" pattern="^[0-9]+$" aria-label="' + langjson.entertheroomid + '" style="border-radius:0 32px 32px 0" dir="ltr"><button type="submit" onClick="Button();return false;" style="border-radius:32px 0 0 32px;padding-right:14px">' + langjson.join + '</button></form></div><br><p>Ver: ' + version + '</p><p><a style="color:#aaa" class="nobox" href="https://www.mozilla.org/en-US/MPL/2.0/" target="_blank" rel="noopener noreferrer">This software is licensed under the terms of the Mozilla Public License 2.0.</a></p><p><button onclick="langSelectView();">Language</button></p>';
 	}else{
-	  appBox.innerHTML = '<h1 aria-label="Shirga Chat">Sh1rga Chat</h1><div class="setbox"><h2 style="margin:8px">' + langjson.startroom + '</h2><button onclick="sendStart();" style="margin-bottom:8px">' + langjson.start + '</button></div><br><div class="setbox"><h2 style="margin:8px">' + langjson.joinroom + '</h2><form action="" style="margin-bottom:8px"><input type="number" id="input" autocomplete="off" required maxlength="12" alt="' + langjson.entertheroomid + '" enterkeyhint="done" pattern="^[0-9]+$" aria-label="' + langjson.entertheroomid + '"><button type="submit" onClick="Button();return false;" style="border-radius:0 32px 32px 0;padding-left:14px">' + langjson.join + '</button></form></div><br><p>Ver: ' + version + '</p><p><a style="color:#aaa" class="nobox" href="' + address_web + '/tos?lang=' + language + '" target="_blank" rel="noopener noreferrer">' + langjson.tos + '</a><br><a style="color:#aaa" class="nobox" href="https://www.mozilla.org/en-US/MPL/2.0/" target="_blank" rel="noopener noreferrer">This software is licensed under the terms of the Mozilla Public License 2.0.</a></p><p><button onclick="langSelectView();">Language</button></p>';
+	  appBox.innerHTML = '<h1 aria-label="Shirga Chat">Sh1rga Chat</h1><div class="setbox"><h2 style="margin:8px">' + langjson.startroom + '</h2><button onclick="sendStart();" style="margin-bottom:8px">' + langjson.start + '</button></div><br><div class="setbox"><h2 style="margin:8px">' + langjson.joinroom + '</h2><form action="" style="margin-bottom:8px"><input type="number" id="input" autocomplete="off" required maxlength="12" alt="' + langjson.entertheroomid + '" enterkeyhint="done" pattern="^[0-9]+$" aria-label="' + langjson.entertheroomid + '"><button type="submit" onClick="Button();return false;" style="border-radius:0 32px 32px 0;padding-left:14px">' + langjson.join + '</button></form></div><br><p>Ver: ' + version + '</p><p><a style="color:#aaa" class="nobox" href="https://www.mozilla.org/en-US/MPL/2.0/" target="_blank" rel="noopener noreferrer">This software is licensed under the terms of the Mozilla Public License 2.0.</a></p><p><button onclick="langSelectView();">Language</button></p>';
 	}
 }
 
@@ -261,10 +258,9 @@ function setEncBit(strength) {
 
 function preCrypt() {
 	cryptFlag = true;
-	for (var i = 0; i < enc_len; i++) {
-		enc_result += enc_str[Math.floor(Math.random() * enc_strLen)];
-	}
-	my_decrypt = cryptico.generateRSAKey(enc_result, enc_bits);
+	enc_seed = new Uint32Array(1);
+	crypto.getRandomValues(enc_seed);
+	my_decrypt = cryptico.generateRSAKey(String(enc_seed[0]), enc_bits);
 	my_encrypt = cryptico.publicKeyString(my_decrypt);
 	if (ThisIsStart == true) {
 		cryptFlag = false;
@@ -525,6 +521,7 @@ function eraser() {
 	my_encrypt = "";
 	my_decrypt = "";
 	encrypt_key = "";
+	enc_seed = [0];
 	roomID = 240000000000;
 	userID = 240000000000;
 	userID_crypt = "";
